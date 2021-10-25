@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Primetest_grün.bmp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Math.Gmp.Native.NET" Version="2.0.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Primetest_grün.bmp" />
+  </ItemGroup>
+
+</Project>
