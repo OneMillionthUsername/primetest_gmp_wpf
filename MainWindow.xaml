@@ -4,57 +4,46 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Prime Calculator" Height="450" Width="800" Icon="/Primetest_grün.bmp">
-	<Grid HorizontalAlignment="Right" Width="800">
+        Title="Prime Calculator" Height="450" Width="800" Icon="/Primetest_grün.bmp"
+				KeyDown="key_write">
+	<Grid HorizontalAlignment="Center" Width="800" VerticalAlignment="Stretch" Background="#FF06062E">
 		<Grid.RowDefinitions>
-			<RowDefinition Height="209*"/>
-			<RowDefinition Height="40*"/>
-			<RowDefinition Height="13*"/>
-			<RowDefinition Height="40*"/>
-			<RowDefinition Height="13*"/>
-			<RowDefinition Height="40*"/>
-			<RowDefinition Height="13*"/>
-			<RowDefinition Height="40*"/>
-			<RowDefinition Height="13*"/>
-			<RowDefinition Height="40*"/>
-			<RowDefinition Height="8*"/>
+			<RowDefinition/>
 		</Grid.RowDefinitions>
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="25*"/>
-			<ColumnDefinition Width="2*"/>
 			<ColumnDefinition/>
-			<ColumnDefinition Width="2*"/>
-			<ColumnDefinition/>
-			<ColumnDefinition Width="2*"/>
-			<ColumnDefinition/>
-			<ColumnDefinition Width="2*"/>
-			<ColumnDefinition Width="4*"/>
 		</Grid.ColumnDefinitions>
-		<Button x:Name="button_8" Content="8" Grid.Column="3" HorizontalAlignment="Center" Height="30" VerticalAlignment="Center" Width="40" Grid.Row="1"/>
-		<Button x:Name="button_7" Content="7" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="40" Height="30" Grid.Row="1"/>
-		<Button x:Name="button_9" Content="9" Grid.Column="5" HorizontalAlignment="Center" Height="30" VerticalAlignment="Center" Width="40" Grid.Row="1"/>
-		<Button x:Name="button_add" Content="+" Grid.Column="7" HorizontalAlignment="Center" Height="30" VerticalAlignment="Center" Width="40" Grid.Row="1"/>
-		<Button x:Name="button_5" Content="5" Grid.Column="3" HorizontalAlignment="Center" Height="30" VerticalAlignment="Center" Width="40" Grid.Row="3"/>
-		<Button x:Name="button_4" Content="4" Grid.Column="1" HorizontalAlignment="Center" Height="30" VerticalAlignment="Center" Width="40" Grid.Row="3"/>
-		<Button x:Name="button_6" Content="6" Grid.Column="5" HorizontalAlignment="Center" Height="30" VerticalAlignment="Center" Width="40" Grid.Row="3"/>
-		<Button x:Name="button_sub" Content="-" Grid.Column="7" HorizontalAlignment="Center" Height="30" VerticalAlignment="Center" Width="40" Grid.Row="3"/>
-		<Button x:Name="button_2" Content="2" Grid.Column="3" HorizontalAlignment="Center" Height="30" VerticalAlignment="Center" Width="40" Grid.Row="5"/>
-		<Button x:Name="button_1" Content="1" Grid.Column="1" HorizontalAlignment="Center" Height="30" VerticalAlignment="Center" Width="40" Grid.Row="5"/>
-		<Button x:Name="button_3" Content="3" Grid.Column="5" HorizontalAlignment="Center" Height="30" VerticalAlignment="Center" Width="40" Grid.Row="5"/>
-		<Button x:Name="button_mul" Content="*" Grid.Column="7" HorizontalAlignment="Center" Height="30" VerticalAlignment="Center" Width="40" Grid.Row="5"/>
-		<Button x:Name="button_0" Content="0" Grid.Column="3" HorizontalAlignment="Center" Height="30" VerticalAlignment="Center" Width="40" Grid.Row="7"/>
-		<Button x:Name="button_openBracket" Content="(" Grid.Column="1" HorizontalAlignment="Center" Height="30" VerticalAlignment="Center" Width="40" Grid.Row="7"/>
-		<Button x:Name="button_closeBracket" Content=")" Grid.Column="5" HorizontalAlignment="Center" Height="30" VerticalAlignment="Center" Width="40" Grid.Row="7"/>
-		<Button x:Name="button_div" Content="/" Grid.Column="7" HorizontalAlignment="Center" Height="30" VerticalAlignment="Center" Width="40" Grid.Row="7"/>
-		<Border BorderThickness="2" BorderBrush="Black" Margin="0,124,0,10" Grid.Column="1" Padding="0,0,0,0" Grid.ColumnSpan="7">
-			<TextBlock x:Name="OutputScreen" TextWrapping="Wrap" TextAlignment="Right" Background="#FFA0F578" FlowDirection="RightToLeft" Height="Auto" Width="Auto"/>
-		</Border>
-		<Border BorderThickness="2" BorderBrush="Black" Margin="30,193,100,12" Padding="0,0,0,0" Grid.RowSpan="9">
-			<TextBlock x:Name="OutputScreen1" TextWrapping="Wrap" TextAlignment="Right" Background="#FF82E2EC" FlowDirection="RightToLeft" Height="Auto" Width="Auto"/>
-		</Border>
-		<Button x:Name="button_Marsenne_Prime" Content="Marsenne Prime (2^n)-1" HorizontalAlignment="Left" Margin="30,44,0,0" VerticalAlignment="Top" Width="140" Height="30"/>
+		<Button x:Name="button_Add" Content="Add" HorizontalAlignment="Center" Height="30" Width="40" VerticalAlignment="Top" Click="btn_add"/>
+		<Button x:Name="button_8" Content="8" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="40" Margin="560,194,0,0" Click="btn_write_click"/>
+		<Button x:Name="button_7" Content="7" HorizontalAlignment="Left" VerticalAlignment="Top" Width="40" Height="30" Margin="500,194,0,0" Click="btn_write_click"/>
+		<Button x:Name="button_9" Content="9" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="40" Margin="620,194,0,0" Click="btn_write_click"/>
+		<Button x:Name="button_add" Content="+" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="40" Margin="680,194,0,0" Click="btn_write_click"/>
+		<Button x:Name="button_5" Content="5" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="40" Margin="560,244,0,0" Click="btn_write_click"/>
+		<Button x:Name="button_4" Content="4" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="40" Margin="500,244,0,0" Click="btn_write_click"/>
+		<Button x:Name="button_6" Content="6" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="40" Margin="620,244,0,0" Click="btn_write_click"/>
+		<Button x:Name="button_sub" Content="-" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="40" Margin="680,244,0,0" Click="btn_write_click"/>
+		<Button x:Name="button_2" Content="2" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="40" Margin="560,294,0,0" Click="btn_write_click"/>
+		<Button x:Name="button_1" Content="1" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="40" Margin="500,294,0,0" Click="btn_write_click"/>
+		<Button x:Name="button_3" Content="3" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="40" Margin="620,294,0,0" Click="btn_write_click"/>
+		<Button x:Name="button_mul" Content="*" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="40" Margin="680,294,0,0" Click="btn_write_click"/>
+		<Button x:Name="button_0" Content="0" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="40" Margin="560,344,0,0" Click="btn_write_click"/>
+		<Button x:Name="button_openBracket" Content="(" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="40" Margin="500,344,0,0" Click="btn_write_click"/>
+		<Button x:Name="button_closeBracket" Content=")" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="40" Margin="620,344,0,0" Click="btn_write_click"/>
+		<Button x:Name="button_div" Content="/" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="40" Margin="680,344,0,0" Click="btn_write_click"/>
+		<Button x:Name="button_marsenne_prime" Content="Marsenne Prime (2^n)-1" HorizontalAlignment="Left" Margin="30,44,0,0" VerticalAlignment="Top" Width="140" Height="30"/>
 		<Button x:Name="button_prime_factorization" Content="Prime factorization" HorizontalAlignment="Left" Margin="30,79,0,0" VerticalAlignment="Top" Width="140" Height="30"/>
 		<Button x:Name="button_prime_list" Content="Prime list" HorizontalAlignment="Left" Margin="30,114,0,0" VerticalAlignment="Top" Width="140" Height="30" ToolTip="Creates a list of all primes in a number."/>
 		<Button x:Name="button_prime_test" Content="Prime test" HorizontalAlignment="Left" Margin="30,149,0,0" VerticalAlignment="Top" Width="140" Height="30" ToolTip="Test if a number is a probable prime."/>
+		<Button x:Name="button_pow2" Content="x^2" HorizontalAlignment="Left" Height="30" Margin="410,344,0,0" VerticalAlignment="Top" Width="80"/>
+		<Button x:Name="button_sqrt" Content="sqrt" HorizontalAlignment="Left" Height="30" Margin="410,294,0,0" VerticalAlignment="Top" Width="80"/>
+		<Button x:Name="button_equals" Content="=" Margin="740,194,20,0" Height="80" VerticalAlignment="Top" Click="btn_write_click"/>
+		<Button x:Name="button_enter" Content="Enter" Margin="740,294,20,0" Height="80" VerticalAlignment="Top"/>
+		<Button x:Name="button_c" Content="C" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="40" Margin="740,129,0,0" Click="btn_clear"/>
+		<Border BorderThickness="2" BorderBrush="Black" Margin="30,184,400,0" Padding="0,0,0,0" Height="190" VerticalAlignment="Top">
+			<TextBlock Height="Auto" Width="Auto" x:Name="OutputScreen_blue" TextWrapping="Wrap" TextAlignment="Right" Background="#FF82E2EC" FlowDirection="LeftToRight"/>
+		</Border>
+		<Border BorderThickness="2" BorderBrush="Black" Margin="500,104,80,250" Padding="0,0,0,0">
+			<TextBlock x:Name="OutputScreen_green" TextWrapping="Wrap" TextAlignment="Right" Background="#FFA0F578" FlowDirection="LeftToRight" Height="Auto" Width="Auto" FontSize="18"/>
+		</Border>
 	</Grid>
 </Window>
