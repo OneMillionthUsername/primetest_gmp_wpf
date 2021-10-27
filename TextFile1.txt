@@ -1,0 +1,129 @@
+		private string BracketsResolve(string input)
+		{
+			string[] resultstring = new string[100];
+			string temp;
+			int termindex = 0;
+			string inline = input;
+			char[] literals = inline.ToCharArray();
+			for(int i = 0; i < literals.Length - 1; i++)
+			{
+				if(literals[i] == '(')
+				{
+					resultstring = inline.Split('(', 2);
+					terms[termindex] = resultstring[termindex];
+					termindex++;
+				}
+			}
+			temp = resultstring[termindex];
+			literals = temp.ToCharArray();
+			for(int j = 0; j < literals.Length-1; j++)
+			{
+				termindex = 0;
+				if(temp.EndsWith(')'))
+				{
+					temp = temp[0..^1];
+					resultstring[termindex] = temp;
+					break;
+				}
+				if(literals[j] == ')')
+				{
+					resultstring = temp.Split(')', 2); //rs[0] = middleterm
+					termindex++;
+					terms[termindex] = resultstring[termindex]; 
+				}
+			}
+			return resultstring[termindex];
+		}
+
+		private string Terms(string input)
+		{
+			string[] adds = new string[100];
+			string[] subs = new string[100];
+			int result = 0, k = 0, l = 0;
+			string term = input;
+			string[] resultstring = new string[100];
+			char[] literals = term.ToCharArray();
+			if(term.Contains('*'))
+			{
+				for(int i = 0; i < literals.Length - 1; i++)
+				{
+					if(literals[i] == '*')
+					{
+						resultstring = term.Split('*');
+						result = int.Parse(resultstring[0]) * int.Parse(resultstring[1]);
+					}
+					if(literals[i] == '/')
+					{
+						resultstring = term.Split('/');
+						result = int.Parse(resultstring[0]) / int.Parse(resultstring[1]);
+					}
+				}
+				return result.ToString(); //term x*y or x/y
+			}
+			else
+			{
+				for(int j = 0; j < literals.Length - 1; j++)
+				{
+					if(literals[j] == '+')
+					{
+						resultstring = term.Split('+', 2);
+						adds[k] = resultstring[k];
+						term = resultstring[k+1];
+						k++;
+					}
+					if(literals[j] == '-')
+					{
+						resultstring = term.Split('-', 2);
+						subs[l] = resultstring[l];
+						term = resultstring[l+1];
+						l++;
+					}
+				}
+				foreach(string addend in adds)
+				{
+					result += int.Parse(addend);
+				}
+				foreach(string minuend in subs)
+				{
+					result -= int.Parse(minuend);
+				}
+				return result.ToString();
+			}
+		}
+
+		if(literals[i] == element)
+					{
+						switch(element)
+						{
+							case '+':
+								{
+									
+									break;
+								}
+							case '-':
+								{
+
+									break;
+								}
+							case '/':
+								{
+
+									break;
+								}
+							case '*':
+								{
+
+									break;
+								}
+							case '(':
+								{
+
+									break;
+								}
+							case ')':
+								{
+
+									break;
+								}
+						}
+					}

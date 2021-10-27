@@ -43,7 +43,7 @@
 			<TextBlock Height="Auto" Width="Auto" x:Name="OutputScreen_blue" TextWrapping="Wrap" TextAlignment="Right" Background="#FF82E2EC" FlowDirection="LeftToRight"/>
 		</Border>
 		<Border BorderThickness="2" BorderBrush="Black" Margin="500,104,80,250" Padding="0,0,0,0">
-			<TextBlock x:Name="OutputScreen_green" TextWrapping="Wrap" TextAlignment="Right" Background="#FFA0F578" FlowDirection="LeftToRight" Height="Auto" Width="Auto" FontSize="18" Text="7-(1+2+3-4)*8"/>
+			<TextBlock x:Name="OutputScreen_green" TextWrapping="Wrap" TextAlignment="Right" Background="#FFA0F578" FlowDirection="LeftToRight" Height="Auto" Width="Auto" FontSize="18" Text="7-(1+7+5+4+5-4)*8"/>
 		</Border>
 	</Grid>
 </Window>
