@@ -13,7 +13,7 @@
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition/>
 		</Grid.ColumnDefinitions>
-		<Button x:Name="button_Add" Content="Add" HorizontalAlignment="Center" Height="30" Width="40" VerticalAlignment="Top" Click="btn_add"/>
+		<Button x:Name="button_Add" Content="Add" HorizontalAlignment="Center" Height="30" Width="40" VerticalAlignment="Top" Click="btn_math"/>
 		<Button x:Name="button_8" Content="8" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="40" Margin="560,194,0,0" Click="btn_write_click"/>
 		<Button x:Name="button_7" Content="7" HorizontalAlignment="Left" VerticalAlignment="Top" Width="40" Height="30" Margin="500,194,0,0" Click="btn_write_click"/>
 		<Button x:Name="button_9" Content="9" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="40" Margin="620,194,0,0" Click="btn_write_click"/>
@@ -37,7 +37,7 @@
 		<Button x:Name="button_pow2" Content="x^2" HorizontalAlignment="Left" Height="30" Margin="410,344,0,0" VerticalAlignment="Top" Width="80"/>
 		<Button x:Name="button_sqrt" Content="sqrt" HorizontalAlignment="Left" Height="30" Margin="410,294,0,0" VerticalAlignment="Top" Width="80"/>
 		<Button x:Name="button_equals" Content="=" Margin="740,194,20,0" Height="80" VerticalAlignment="Top" Click="btn_write_click"/>
-		<Button x:Name="button_enter" Content="Enter" Margin="740,294,20,0" Height="80" VerticalAlignment="Top"/>
+		<Button x:Name="button_enter" Content="Enter" Margin="740,294,20,0" Height="80" VerticalAlignment="Top" KeyDown="btn_math" Click="btn_math"/>
 		<Button x:Name="button_c" Content="C" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="40" Margin="740,129,0,0" Click="btn_clear"/>
 		<Border BorderThickness="2" BorderBrush="Black" Margin="30,184,400,0" Padding="0,0,0,0" Height="190" VerticalAlignment="Top">
 			<TextBlock Height="Auto" Width="Auto" x:Name="OutputScreen_blue" TextWrapping="Wrap" TextAlignment="Right" Background="#FF82E2EC" FlowDirection="LeftToRight"/>
