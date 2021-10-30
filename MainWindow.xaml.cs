@@ -10,15 +10,16 @@ namespace primetest_gmp
     /// </summary>
     public partial class MainWindow : Window
     {
-        string[] memory = new string[25];
         string[] resultstring = new string[2];
-        string[] term_split = new string[25];
-        float[] term_result = new float[4];
-        char[] separator = { '+', '-', '*', '/', '(', ')', ' ' };
-        int result_index = 0;
+        char[] operator_point = { '*', '/' };
+        char[] operator_line = { '+', '-' };
+        char[] separator = { '(', ')' };
+        string input;
+        float result;
         public MainWindow()
         {
             InitializeComponent();
+
         }
         private void btn_write_click(object sender, RoutedEventArgs e)
         {
@@ -59,7 +60,7 @@ namespace primetest_gmp
                 case Key.Add: { OutputScreen_green.Text += "+"; break; }
                 case Key.Subtract: { OutputScreen_green.Text += "-"; break; }
                 case Key.Multiply: { OutputScreen_green.Text += "*"; break; }
-                case Key.Enter: { TermEvaluation(OutputScreen_green.Text); break; }
+                case Key.Enter: { btn_math(Key.Enter, e); break; }
                 case Key.Back:
                     {
                         if (OutputScreen_green.Text == string.Empty)
@@ -72,206 +73,110 @@ namespace primetest_gmp
             }
         }
 
-        private string BracketsResolve(string input) //returns the term in the most inner brackets
+        private string Add(string x, string y)
         {
-            if (input.Contains('('))
-            {
-                resultstring = input.Split('(', 2);
-                term_split[0] = resultstring[0];
-                return resultstring[1];
-            }
-            else if (input.Contains(')'))
-            {
-                resultstring = input.Split(')', 2);
-                term_split[1] = resultstring[1];
-                return resultstring[0];
-            }
-            return input;
+            result = int.Parse(x) + int.Parse(y);
+            return result.ToString();
         }
-        private string TermAdd(string input)
+
+        private string Sub(string input)
         {
-            if (input.Contains('+'))
+            result = int.Parse(resultstring[0]) - int.Parse(resultstring[1]);
+            return result.ToString();
+        }
+
+        private string Mul(string input)
+        {
+            result = int.Parse(resultstring[0]) * int.Parse(resultstring[1]);
+            return result.ToString();
+        }
+        private string Div(string input)
+        {
+            result = int.Parse(resultstring[0]) / int.Parse(resultstring[1]);
+            return result.ToString();
+        }
+        private string Term(string input)
+        {
+            char[] scanterm = input.ToCharArray();
+
+            while (!input.All(char.IsDigit))
             {
-                resultstring = input.Split('+', 2);
-                while (!resultstring[0].All(char.IsDigit) | !resultstring[1].All(char.IsDigit))
+                for (int i = 0; i < scanterm.Length - 1; i++)
                 {
-                    foreach (char element in separator)
+                    //if (scanterm[i] == '(')
+                    //{
+                    //    resultstring = input.Split(separator[i], 2);
+                    //    return Term(resultstring[1]);
+                    //}
+                    //if (scanterm[i] == ')')
+                    //{
+                    //    resultstring = resultstring[1].Split(separator[i], 2);
+                    //    return Term(resultstring[0]);
+                    //}
+                    //if (scanterm[i] == '*')
+                    //{
+                    //    resultstring = input.Split(scanterm[i], 2);
+                    //    return Term(resultstring[1]);
+                    //}
+
+                    //else if (scanterm[i] == '/')
+                    //{
+                    //    resultstring = input.Split(scanterm[i], 2);
+                    //    return Term(resultstring[1]);
+                    //}
+
+                    //if (scanterm[i] == '-')
+                    //{
+                    //    resultstring = input.Split(scanterm[i], 2);
+                    //    return Term(resultstring[1]);
+                    //}
+                    if (scanterm[i] == '+')
                     {
-                        if (resultstring[0].Contains(element))
+                        resultstring = input.Split(scanterm[i], 2);
+                        resultstring = resultstring[1].Split(scanterm[i], 2);
+                        if (resultstring.Length <= 1)
                         {
-                            memory = resultstring[0].Split(element, 2);
-                            resultstring[0] = memory[1];
-                            term_split[0] = memory[0];
-                            break;
+                            resultstring = input.Split(scanterm[i], 2);
+                            result = int.Parse(resultstring[0]) + int.Parse(resultstring[1]);
+                            return input = input.Replace(resultstring[0] + '+' + resultstring[1], result.ToString());
                         }
-                        else if (resultstring[1].Contains(element))
-                        {
-                            memory = resultstring[1].Split(element, 2);
-                            resultstring[1] = memory[0];
-                            term_split[1] = memory[1];
-                            break;
-                        }
+                        scanterm = input.ToCharArray();
+                        resultstring = input.Split(scanterm[i], 2);
+                        Term(resultstring[1]);
+                        resultstring = input.Split(scanterm[i], 2);
+                        input = input.Replace(resultstring[1], result.ToString());
+                        //Term(resultstring[1]);
                     }
+                    //resultstring[1] = input.Replace(resultstring[0] + scanterm[i] + resultstring[1], result.ToString());
+                    //Term(resultstring[1]);
                 }
-                if (resultstring[0].All(char.IsDigit) && resultstring[1].All(char.IsDigit))
-                {
-                    term_result[result_index] = int.Parse(resultstring[0]) + int.Parse(resultstring[1]);
-                    input = input.Replace(string.Concat(resultstring[0] + "+" + resultstring[1]), term_result[result_index].ToString());
-                    return input;
-                }
-            }
-            return input;
-        }
-        private string TermSub(string input)
-        {
-            if (input.Contains('-'))
-            {
-                resultstring = input.Split('-', 2);
-                while (!resultstring[0].All(char.IsDigit) | !resultstring[1].All(char.IsDigit))
-                {
-                    foreach (char element in separator)
-                    {
-                        if (resultstring[0].Contains(element))
-                        {
-                            memory = resultstring[0].Split(element, 2);
-                            resultstring[0] = memory[1];
-                            term_split[0] = memory[0];
-                            break;
-                        }
-                        else if (resultstring[1].Contains(element))
-                        {
-                            memory = resultstring[1].Split(element, 2);
-                            resultstring[1] = memory[0];
-                            term_split[1] = memory[1];
-                            break;
-                        }
-                    }
-                }
-                if (resultstring[0].All(char.IsDigit) && resultstring[1].All(char.IsDigit))
-                {
-                    term_result[result_index] = int.Parse(resultstring[0]) - int.Parse(resultstring[1]);
-                    input = input.Replace(string.Concat(resultstring[0] + "-" + resultstring[1]), term_result[result_index].ToString());
-                    return input;
-                }
-            }
-            return input;
-        }
-        private string TermMul(string input)
-        {
-            if (input.Contains('*'))
-            {
-                resultstring = input.Split('*', 2);
-                while (!resultstring[0].All(char.IsDigit) | !resultstring[1].All(char.IsDigit))
-                {
-                    foreach (char element in separator)
-                    {
-                        if (resultstring[0].Contains(element))
-                        {
-                            memory = resultstring[0].Split(element, 2);
-                            resultstring[0] = memory[1];
-                            term_split[0] = memory[0];
-                            break;
-                        }
-                        else if (resultstring[1].Contains(element))
-                        {
-                            memory = resultstring[1].Split(element, 2);
-                            resultstring[1] = memory[0];
-                            term_split[1] = memory[1];
-                            break;
-                        }
-                    }
-                }
-                if (resultstring[0].All(char.IsDigit) && resultstring[1].All(char.IsDigit))
-                {
-                    term_result[result_index] = int.Parse(resultstring[0]) * int.Parse(resultstring[1]);
-                    input = input.Replace(string.Concat(resultstring[0] + "*" + resultstring[1]), term_result[result_index].ToString());
-                    return input;
-                }
-            }
-            return input;
-        }
-        private string TermDiv(string input)
-        {
-            if (input.Contains('/'))
-            {
-                resultstring = input.Split('/', 2);
-                while (!resultstring[0].All(char.IsDigit) | !resultstring[1].All(char.IsDigit))
-                {
-                    foreach (char element in separator)
-                    {
-                        if (resultstring[0].Contains(element))
-                        {
-                            memory = resultstring[0].Split(element, 2);
-                            resultstring[0] = memory[1];
-                            term_split[0] = memory[0];
-                            break;
-                        }
-                        else if (resultstring[1].Contains(element))
-                        {
-                            memory = resultstring[1].Split(element, 2);
-                            resultstring[1] = memory[0];
-                            term_split[1] = memory[1];
-                            break;
-                        }
-                    }
-                }
-                if (resultstring[0].All(char.IsDigit) && resultstring[1].All(char.IsDigit))
-                {
-                    term_result[result_index] = int.Parse(resultstring[0]) / int.Parse(resultstring[1]);
-                    input = input.Replace(string.Concat(resultstring[0] + "/" + resultstring[1]), term_result[result_index].ToString());
-                    return input;
-                }
-            }
-            return input;
-        }
-        private string TermResolve(string input) //returns the result of a blank term
-        {
-            if (input.Contains('('))
-            {
-                input = BracketsResolve(input);
-            }
-            if (input.Contains(')'))
-            {
-                input = BracketsResolve(input);
-            }
-            if (input.Contains('*'))
-            {
-                input = TermMul(input);
-            }
-            if (input.Contains('/'))
-            {
-                input = TermDiv(input);
             }
             if (input.Contains('+'))
             {
-                input = TermAdd(input);
+
             }
-            if (input.Contains('-'))
-            {
-                input = TermSub(input);
-            }
+            //if (resultstring[0].All(char.IsDigit) && resultstring[1].All(char.IsDigit))
+            //{
+            //    if (input.Contains('*'))
+            //        Mul(input);
+            //    if (input.Contains('/'))
+            //        Div(input);
+            //    if (input.Contains('+'))
+            //        Add(resultstring[0], resultstring[1]);
+            //    if (input.Contains('-'))
+            //        Sub(input);
+            //}
             return input;
-        }
-        private void TermOutput(string input)
-        {
-            OutputScreen_green.Inlines.Clear();
-            OutputScreen_green.Text = input;
-        }
-        private void TermEvaluation(string screentext)
-        {
-            if (!screentext.All(char.IsDigit))
-                screentext = TermResolve(screentext);
-            TermOutput(screentext);
         }
         private void btn_math(object sender, RoutedEventArgs e)
         {
-            TermEvaluation(OutputScreen_green.Text);
+            Term(OutputScreen_green.Text);
         }
 
         private void btn_math(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
-                TermEvaluation(OutputScreen_green.Text);
+                Term(OutputScreen_green.Text);
         }
     }
 }
